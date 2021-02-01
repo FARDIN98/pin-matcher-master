@@ -11,41 +11,37 @@ buttonContainer.addEventListener("click", function(event){
     if(isNaN(digit)){
         //handle backspace
         //handle clear
-    }
-    if(digit === 'C' ){
-        const typedInput = document.getElementById("typed-pin");
-        typedInput.value = '';
+        if(digit === 'C'){
+            const typedInput = document.getElementById("typed-pin");
+            typedInput.value ='';
+        }
     }
     else{
         const typedInput = document.getElementById("typed-pin");
         typedInput.value = typedInput.value + digit;
     }
 })
-
 //Verify Pin Number
 function verifyPin(){
     const pin = document.getElementById("input-field").value;
     const typedPin = document.getElementById("typed-pin").value;
     if(pin === typedPin){
-        const correct = document.getElementById("correct-pin");
-        correct.style.display = "block";
-        const inCorrect = document.getElementById("incorrect-pin");
-        inCorrect.style.display = "none";
+        checkStatus("block","none");
     }
     else{
-        const inCorrect = document.getElementById("incorrect-pin");
-        inCorrect.style.display = "none";
-        const correct = document.getElementById("correct-pin");
-        correct.style.display = "block";
+       checkStatus("none","block");
     }
 }
 
 
 
 
-
-
-
+function checkStatus(correctStatus,incorrectStatus){
+    const correct = document.getElementById("correct-pin");
+    correct.style.display = correctStatus;
+    const inCorrect = document.getElementById("incorrect-pin");
+    inCorrect.style.display = incorrectStatus;
+}
 
 function getPin(){
     const random = Math.random()*10000;
